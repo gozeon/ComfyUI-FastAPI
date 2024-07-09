@@ -24,7 +24,6 @@ log = logging.getLogger(__name__)
 api_title = 'ComfyUI 接口文档'
 api_version = '0.0.1'
 server_address = '192.168.19.40:8188'
-image_address = 'http://127.0.0.1:8000/images/'
 client_id = str(uuid.uuid4())
 images_folder = Path(__file__).parent.joinpath("images")
 images_folder.mkdir(parents=True, exist_ok=True)
@@ -97,6 +96,7 @@ app.mount("/images", StaticFiles(directory=images_folder), name="images")
 # Endpoints
 @app.post('/prompt', response_model=Response, description='Execute a ComfyUI workflow.')
 def prompt(payload: Payload, request: Request):
+    image_url = urllib.parse.urljoin(str(request.url), 'images')
     ws = websocket.WebSocket()
     ws.connect("ws://{}/ws?clientId={}".format(server_address, client_id))
     prompt = payload.prompt
@@ -111,7 +111,7 @@ def prompt(payload: Payload, request: Request):
             filename = f"{client_id}-{node_id}.png"
             filepath = images_folder.joinpath(filename)
             image.save(filepath)
-            r.append(image_address + filename)
+            r.append(image_url + "/" + filename)
     ws.close()
     response = { 'images': r }
     return JSONResponse(content=response, status_code=200)
