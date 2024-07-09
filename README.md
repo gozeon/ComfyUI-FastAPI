@@ -20,110 +20,109 @@ Here is an example of payload for the `/prompt` endpoint, remember to update it 
 
 ```json
 {
-  "prompt": {
-    "1": {
-      "inputs": {
-        "seed": 1,
-        "steps": 20,
-        "cfg": 8,
-        "sampler_name": "dpmpp_sde",
-        "scheduler": "normal",
-        "denoise": 1,
-        "model": [
-          "2",
-          0
-        ],
-        "positive": [
-          "4",
-          0
-        ],
-        "negative": [
-          "5",
-          0
-        ],
-        "latent_image": [
-          "3",
-          0
-        ]
-      },
-      "class_type": "KSampler",
-      "_meta": {
-        "title": "KSampler"
-      }
+  "3": {
+    "inputs": {
+      "seed": 156680208700286,
+      "steps": 20,
+      "cfg": 8,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "4",
+        0
+      ],
+      "positive": [
+        "6",
+        0
+      ],
+      "negative": [
+        "7",
+        0
+      ],
+      "latent_image": [
+        "5",
+        0
+      ]
     },
-    "2": {
-      "inputs": {
-        "ckpt_name": "juggernaut-xl-v10.0.safetensors"
-      },
-      "class_type": "CheckpointLoaderSimple",
-      "_meta": {
-        "title": "Load Checkpoint"
-      }
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "4": {
+    "inputs": {
+      "ckpt_name": "v1-5-pruned-emaonly.safetensors"
     },
-    "3": {
-      "inputs": {
-        "width": 1024,
-        "height": 1024,
-        "batch_size": 1
-      },
-      "class_type": "EmptyLatentImage",
-      "_meta": {
-        "title": "Empty Latent Image"
-      }
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "5": {
+    "inputs": {
+      "width": 512,
+      "height": 512,
+      "batch_size": 1
     },
-    "4": {
-      "inputs": {
-        "text": "an astronaut riding a horse",
-        "clip": [
-          "2",
-          1
-        ]
-      },
-      "class_type": "CLIPTextEncode",
-      "_meta": {
-        "title": "CLIP Text Encode (Prompt)"
-      }
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "6": {
+    "inputs": {
+      "text": "beautiful scenery nature glass bottle landscape, , purple galaxy bottle,",
+      "clip": [
+        "4",
+        1
+      ]
     },
-    "5": {
-      "inputs": {
-        "text": "",
-        "clip": [
-          "2",
-          1
-        ]
-      },
-      "class_type": "CLIPTextEncode",
-      "_meta": {
-        "title": "CLIP Text Encode (Negative Prompt)"
-      }
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "7": {
+    "inputs": {
+      "text": "text, watermark",
+      "clip": [
+        "4",
+        1
+      ]
     },
-    "6": {
-      "inputs": {
-        "samples": [
-          "1",
-          0
-        ],
-        "vae": [
-          "2",
-          2
-        ]
-      },
-      "class_type": "VAEDecode",
-      "_meta": {
-        "title": "VAE Decode"
-      }
+    "class_type": "CLIPTextEncode",
+    "_meta": {
+      "title": "CLIP Text Encode (Prompt)"
+    }
+  },
+  "8": {
+    "inputs": {
+      "samples": [
+        "3",
+        0
+      ],
+      "vae": [
+        "4",
+        2
+      ]
     },
-    "save_image_websocket_node": {
-      "inputs": {
-        "images": [
-          "6",
-          0
-        ]
-      },
-      "class_type": "SaveImageWebsocket",
-      "_meta": {
-        "title": "SaveImageWebsocket"
-      }
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
     }
   }
 }
