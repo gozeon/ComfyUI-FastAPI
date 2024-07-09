@@ -128,3 +128,7 @@ Here is an example of payload for the `/prompt` endpoint, remember to update it 
   }
 }
 ```
+
+## refrence
+
+- https://github.com/talesofai/comfyui-browser
